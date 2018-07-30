@@ -16,3 +16,4 @@ public class AudioCollideDestroy : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+}
