@@ -1,0 +1,44 @@
+//A script to follow the camera with a gameobject
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class Lookatcam : MonoBehaviour
+{
+
+    public bool constrainY = false;
+    public float addRotation = 0;
+    List<Vector3> prev;
+    public int delay = 30;
+
+    // Use this for initialization
+    void Start()
+    {
+        prev = new List<Vector3>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (prev.Count < delay)
+        {
+            for (int i = 0; i < delay; i++)
+            {
+                prev.Add(Camera.main.transform.position);
+            }
+        }
+        prev.Add(Camera.main.transform.position);
+        if (prev.Count > delay)
+            prev.RemoveAt(0);
+        if (Camera.main)
+        {
+            transform.LookAt(prev[0]);
+            if (constrainY)
+                transform.localEulerAngles = Vector3.Scale(transform.localEulerAngles, new Vector3(0, 1, 0));
+            transform.Rotate(0, addRotation, 0);
+        }
+    }
+}
