@@ -1,0 +1,36 @@
+//A Script to turn a gameobject on and off in Unity with a boolean on keypress
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TurnObjectOnOff : MonoBehaviour {
+
+    public GameObject switchobject;
+    public bool IsActive = true;
+
+	// Use this for initialization
+	void Start () {
+  
+	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyUp("space"))
+        {
+            IsActive= !IsActive; //if inventory is already True it will set it to false And the other way around.
+        }
+
+        if (IsActive == true)
+        {
+            switchobject.SetActive(true);
+        }
+        else
+        {
+            switchobject.SetActive(false); //if the boolean is false
+        }
+    }
+	
+}
