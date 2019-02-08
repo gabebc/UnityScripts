@@ -1,0 +1,41 @@
+//A Script to Open and Close a Door in unity With Animations
+//Create two animations and one bool parameter called "open"
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorTrigger : MonoBehaviour
+{
+    public bool open = false;
+    Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        Debug.Log("GOT THE ANIMATOR");
+    }
+
+    void OnTriggerEnter(Collider other)
+
+    {
+        if (other.tag == "Player")
+        {
+            anim.SetBool("open", true);
+         
+            Debug.Log("OPENING THE DOOR");
+
+        }
+
+    }
+
+    void OnTriggerExit(Collider other)
+
+    {
+        if (other.tag == "Player")
+        {
+            anim.SetBool("open", false);
+            Debug.Log("CLOSING THE DOOR");
+        }
+    }
+}
